@@ -1,5 +1,5 @@
 # Thipak.github.io
-Learning React.js
+Learning three.js
 
 Try this:
 https://thipak.github.io/
