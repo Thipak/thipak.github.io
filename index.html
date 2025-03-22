@@ -3,19 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
+    <title>Thipak's Territory</title>
     <link rel="stylesheet" href="styles/index.css">
   </head>
 
   <body>
-    <canvas id="c"></canvas>
+    <div id="WebGL-output"></div>
     <script type="importmap">
       {
         "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"
+          "three": "https://cdn.jsdelivr.net/npm/three@0.174.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.174.0/examples/jsm/"
         }
       }
-      </script>
+    </script>
     <script type="module" src="scripts/index.js"></script>
   </body>
 </html>
