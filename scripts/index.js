@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
 import { Movement} from './movement.js';
+import { Floor } from './objects/floor.js';
+import { Background } from './objects/background.js';
 
 // DOM element of the WebGL output
 const webGLOutput = document.getElementById('WebGL-output');
@@ -22,7 +24,6 @@ function init() {
 
 	// Three JS Scene base with fog
 	scene = new THREE.Scene();
-	scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 
 	// Three JS Renderer Window setup
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -79,16 +80,13 @@ function init() {
 
 	scene.add( controls.object);
 
-	let floorGeometry = new THREE.PlaneGeometry( 2000, 2000, 100, 100 );
-	floorGeometry.rotateX( - Math.PI / 2 );
+	// Add the background to the scene
+	const background = new Background();
+	// scene.add( background.getMesh() );
 
-	const floorMaterial = new THREE.MeshBasicMaterial( { vertexColors: false } );
-
-	const floor = new THREE.Mesh( floorGeometry, floorMaterial );
-	scene.add( floor );
-
-	const TextureLoader = new THREE.TextureLoader();
-	const texture = TextureLoader.load( './../assets/textures/space.jpg' );
+	// Add the floor to the scene
+	const floor = new Floor();
+	scene.add( floor.getMesh() );
 }
 
 function onWindowResize() {
