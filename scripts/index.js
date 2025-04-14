@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
 
 import { Movement} from './movement.js';
 import { Floor } from './objects/floor.js';
@@ -10,6 +11,8 @@ const webGLOutput = document.getElementById('WebGL-output');
 
 // Definition
 let camera, scene, renderer, controls;
+let cssScene, cssRenderer;
+let cssObject;
 
 // List of objects on the scene
 const objects = [];
@@ -24,16 +27,28 @@ function init() {
 
 	// Three JS Scene base with fog
 	scene = new THREE.Scene();
+	cssScene = new THREE.Scene();
 
 	// Three JS Renderer Window setup
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.setAnimationLoop( animate );
+	renderer.domElement.style.position = 'absolute';
+
+	// CSS Renderer Window setup
+
+	cssRenderer = new CSS3DRenderer();
+	// Removed setPixelRatio as CSS3DRenderer does not support it
+	cssRenderer.setSize( window.innerWidth, window.innerHeight );
+	cssRenderer.domElement.style.position = 'absolute';
+
+
 	window.addEventListener( 'resize', onWindowResize );
 
 	// Append the renderer to the DOM
 	webGLOutput.appendChild( renderer.domElement );
+	webGLOutput.appendChild( cssRenderer.domElement );
 
 	/**
 	 * Camera setup
@@ -78,15 +93,25 @@ function init() {
 	document.addEventListener( 'keydown', Movement.onKeyDown );
 	document.addEventListener( 'keyup', Movement.onKeyUp );
 
-	scene.add( controls.object);
+	scene.add( controls.object );
+	cssScene.add( controls.object );
 
 	// Add the background to the scene
 	const background = new Background();
 	// scene.add( background.getMesh() );
 
 	// Add the floor to the scene
-	const floor = new Floor();
-	scene.add( floor.getMesh() );
+
+	const text = document.createElement( 'div' );
+	text.className = 'css-text';
+	text.textContent = 'Hello! Welcome ';
+	text.style.color = 'white';
+
+	cssObject = new CSS3DObject( text );
+	cssObject.position.set( 0, 0, -100 );
+
+	cssScene.add( cssObject );
+
 }
 
 function onWindowResize() {
@@ -104,6 +129,7 @@ function animate() {
 	prevTime = time;
 
 	renderer.render( scene, camera );
+	cssRenderer.render( cssScene, camera );
 
 }
 

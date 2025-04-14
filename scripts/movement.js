@@ -33,7 +33,7 @@ class Movement {
                 break;
     
             case 'Space':
-                if ( Movement.canJump === true ) Movement.velocity.y += 350;
+                // if ( Movement.canJump === true ) Movement.velocity.y += 350;
                 Movement.canJump = false;
                 break;
     
@@ -91,7 +91,7 @@ class Movement {
             Movement.velocity.y = 0;
             controls.object.position.y = 10;
 
-            Movement.canJump = true;
+            // Movement.canJump = true;
 
         }
     }
