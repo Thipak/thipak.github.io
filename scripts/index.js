@@ -1,33 +1,23 @@
 import * as THREE from 'three';
-import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
-
-import { Movement} from './movement.js';
-import { Floor } from './objects/floor.js';
-import { Background } from './objects/background.js';
 
 // DOM element of the WebGL output
 const webGLOutput = document.getElementById('WebGL-output');
 
 // Definition
 let camera, scene, renderer, controls;
-let cssScene, cssRenderer;
-let cssObject;
 
 // List of objects on the scene
 const objects = [];
 
 // Time
 let prevTime = performance.now();
-const vertex = new THREE.Vector3();
-
-const color = new THREE.Color();
 
 function init() {
 
 	// Three JS Scene base with fog
 	scene = new THREE.Scene();
-	cssScene = new THREE.Scene();
 
 	// Three JS Renderer Window setup
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -36,19 +26,10 @@ function init() {
 	renderer.setAnimationLoop( animate );
 	renderer.domElement.style.position = 'absolute';
 
-	// CSS Renderer Window setup
-
-	cssRenderer = new CSS3DRenderer();
-	// Removed setPixelRatio as CSS3DRenderer does not support it
-	cssRenderer.setSize( window.innerWidth, window.innerHeight );
-	cssRenderer.domElement.style.position = 'absolute';
-
-
 	window.addEventListener( 'resize', onWindowResize );
 
 	// Append the renderer to the DOM
 	webGLOutput.appendChild( renderer.domElement );
-	webGLOutput.appendChild( cssRenderer.domElement );
 
 	/**
 	 * Camera setup
@@ -66,71 +47,48 @@ function init() {
 	 * 
 	 * PointerLockControls is a custom class that allows the camera to be controlled by the mouse and keyboard
 	 */
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-	controls = new PointerLockControls( camera, document.body );
+	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
+	controls = new OrbitControls( camera, renderer.domElement );
+
+	controls.minDistance = 100;
+	controls.maxDistance = 300;
+
+	controls.maxPolarAngle = Math.PI / 2;
 
 
-	/**
-	 * Event listeners for the PointerLockControls
-	 * Once the user clicks on the WebGL output, the PointerLockControls are locked
-	 * Once the PointerLockControls are locked, mouse events are enabled.
-	 * Keyboard events are enabled by default
-	 */
-	webGLOutput.addEventListener( 'click', function () {
-		controls.lock();
-	} );
+	const geometry = new THREE.BoxGeometry( 15, 15, 15 );
+	const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+	const cube = new THREE.Mesh( geometry, material );
+	cube.position.set( 0, 0, -5 );
+	scene.add( cube );
 
-	controls.addEventListener( 'lock', function () {
-		console.log("PointerLockControls locked");
-	
-	} );
-	
-	controls.addEventListener( 'unlock', function () {
-		console.log("PointerLockControls unlocked");
-	
-	} );
+	const planeGeometry = new THREE.PlaneGeometry(500, 500);
+	const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa, side: THREE.FrontSide });
+	const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+	plane.rotation.x = -Math.PI / 2; // Rotate to make it horizontal
+	plane.position.y = -15; // Position it below the cube
+	scene.add(plane);
 
-	document.addEventListener( 'keydown', Movement.onKeyDown );
-	document.addEventListener( 'keyup', Movement.onKeyUp );
-
-	scene.add( controls.object );
-	cssScene.add( controls.object );
-
-	// Add the background to the scene
-	const background = new Background();
-	// scene.add( background.getMesh() );
-
-	// Add the floor to the scene
-
-	const text = document.createElement( 'div' );
-	text.className = 'css-text';
-	text.textContent = 'Hello! Welcome ';
-	text.style.color = 'white';
-
-	cssObject = new CSS3DObject( text );
-	cssObject.position.set( 0, 0, -100 );
-
-	cssScene.add( cssObject );
 
 }
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
+	controls.update();
 }
 
 function animate() {
-	controls.update();
+
+	// requestAnimationFrame( animate );
+
 
 	const time = performance.now();
 	const delta = ( time - prevTime ) / 1000;
 
-	Movement.move(delta, controls);
-
-	prevTime = time;
-
+	controls.update();
 	renderer.render( scene, camera );
-	cssRenderer.render( cssScene, camera );
-
+	
+	prevTime = time;
 }
 
 window.onload = init;
