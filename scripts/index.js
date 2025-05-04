@@ -1,6 +1,10 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+
+import createSea from '../components/sea.js';
+import createIsland from '../components/island.js';
 
 // DOM element of the WebGL output
 const webGLOutput = document.getElementById('WebGL-output');
@@ -48,26 +52,41 @@ function init() {
 	 * PointerLockControls is a custom class that allows the camera to be controlled by the mouse and keyboard
 	 */
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
 	controls = new OrbitControls( camera, renderer.domElement );
 
-	controls.minDistance = 100;
+	controls.minDistance = 150;
 	controls.maxDistance = 300;
 
 	controls.maxPolarAngle = Math.PI / 2;
+	controls.autoRotate = true;
+	controls.autoRotateSpeed = -0.5;
+
+	camera.position.set( 10, 50, 250 );
 
 
 	const geometry = new THREE.BoxGeometry( 15, 15, 15 );
 	const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 	const cube = new THREE.Mesh( geometry, material );
 	cube.position.set( 0, 0, -5 );
-	scene.add( cube );
+	// scene.add( cube );
 
-	const planeGeometry = new THREE.PlaneGeometry(500, 500);
-	const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa, side: THREE.FrontSide });
-	const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-	plane.rotation.x = -Math.PI / 2; // Rotate to make it horizontal
-	plane.position.y = -15; // Position it below the cube
-	scene.add(plane);
+	scene.add(createSea());
+	scene.add(createIsland());
+
+	// const loader = new GLTFLoader();
+	// loader.setPath('../assets/'); // Set the base path for assets
+	// loader.load('patch-sand-foliage.glb', function ( gltf ) {
+
+	// 	scene.add( gltf.scene );
+	// }, undefined, function ( error ) {
+	// 	console.error('Error loading GLTF model:', error);
+	// 	console.error('Ensure all textures are in the correct path relative to the GLB file.');
+	// }, undefined, function ( error ) {
+	
+	// console.error( error );
+	
+	// } );
 
 
 }
