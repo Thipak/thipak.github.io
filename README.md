@@ -1,4 +1,6 @@
-#### This template should help get you started developing with Vue 3 in Vite.
+#### Thipak's Project
+
+This is a project for my portfolio. It is a website that I built using Vue.js
 
 ## Project Setup
 
