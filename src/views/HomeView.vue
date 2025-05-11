@@ -3,6 +3,7 @@ import HomeFlexOne from '@/components/HomeFlexOne.vue';
 import HomeFlexIntro from '@/components/HomeFlexIntro.vue';
 import HomeFlexExperience from '@/components/HomeFlexExperience.vue';
 import HomeFlexProject from '@/components/HomeFlexProject.vue';
+import HomeFlexContact from '@/components/HomeFlexContact.vue';
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import HomeFlexProject from '@/components/HomeFlexProject.vue';
     <HomeFlexIntro />
     <HomeFlexProject />
     <HomeFlexExperience />
+    <HomeFlexContact />
   </div>
 </template>
 

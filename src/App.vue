@@ -5,8 +5,6 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
       </nav>
@@ -21,7 +19,7 @@ header {
   display: flex;
   top: 0;
   left: 0;
-  gap: 1rem;
+  padding: 20px;
   width: 100%;
   background-color: aliceblue;
 }

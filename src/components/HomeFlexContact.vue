@@ -4,7 +4,12 @@
     <div class="flex-element-one">
         <section>
             <h1>THIPAK B</h1>
-            <h2>:Full-Stack Developer</h2>
+            <h2><a href="mailto:thipak01balaji@gmail.com">thipak01balaji@gmail.com</a></h2>
+            <h2>LinkedIn: <a href="https://www.linkedin.com/in/thipak/">thipak</a></h2>
+            <h2>GitHub: <a href="https://github.com/Thipak/">Thipak</a></h2>
+            <h2><a href="https://github.com/Thipak/Thipak.github.io">Portfolio</a></h2>
+            
+
         </section>
     </div>
     <div id="inProgress">
