@@ -1,11 +1,18 @@
 <script setup lang="ts">
+import {KinesisContainer, KinesisElement} from 'vue-kinesis';
+
 </script>
 <template>
     <div class="flex-element-one">
-        <section>
-            <h1>THIPAK B</h1>
-            <h2>:Full-Stack Developer</h2>
-        </section>
+        <KinesisContainer class="kinesis-container">
+            <section>
+                <KinesisElement :strength="50"
+                                type="depth">
+                    <h1>THIPAK B</h1>
+                </KinesisElement>
+                <h2>:Full-Stack Developer</h2>
+            </section>
+        </KinesisContainer>
     </div>
     <div id="inProgress">
        <p> Work in Progress !! </p>
