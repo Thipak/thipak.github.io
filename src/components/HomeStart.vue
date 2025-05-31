@@ -1,6 +1,9 @@
 <script setup lang="ts">
+
+import { onMounted } from 'vue';
 import Name from './subcomponents/Name.vue';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const timeline = gsap.timeline({
     defaults: {
@@ -9,22 +12,29 @@ const timeline = gsap.timeline({
     },
 });
 
-timeline.from(".role", {
-    x: -150,
+onMounted(() => {
+
+  timeline.from(".name", {
+    x: -200,
     opacity: 0,
-}, "<").from(".random-text", {
-    x: -150,
+  }).from(".role", {
+    x: -250,
     opacity: 0,
-}, "<");
+  }, "<").from(".random-text", {
+      x: -350,
+      opacity: 0,
+      delay: -0.5,
+  });
+});
 
 </script>
 <template>
-    <div class="flex-element-one">
-        <section>
-            <Name />
-            <h2 class="role">:Full-Stack Developer</h2>
-            <p class="random-text">//just a random text for animation</p>
-        </section>
+    <div class="flex-element-start">
+            <section>
+                <Name class="name" />
+                <h2 class="role">:Full-Stack Developer</h2>
+                <p class="random-text">//just a random text for animation</p>
+            </section>
     </div>
     <div id="inProgress">
        <p> Work in Progress !! </p>
@@ -32,10 +42,7 @@ timeline.from(".role", {
 </template>
 
 <style scoped>
-.flex-element-one {
-    width: 100%;
-    height: 100vh;
-    background-color: #ddd6d6;
+.flex-element-start {
 
     display: flex;
     flex-direction: column;
@@ -43,6 +50,7 @@ timeline.from(".role", {
     height: 100vh;
     justify-content: center;
     align-items: center;
+    background-color: #ddd6d6;
 
     user-select: none;
     -moz-user-select: none;

@@ -1,11 +1,11 @@
-import './assets/main.css'
+import './assets/main.css';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-import App from './App.vue'
-import router from './router'
-import VueKinesis from 'vue-kinesis'
+import App from './App.vue';
+import router from './router';
+import VueKinesis from 'vue-kinesis';
 
 const app = createApp(App)
 
