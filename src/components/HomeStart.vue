@@ -1,72 +1,73 @@
 <script setup lang="ts">
 
-    import { onMounted } from 'vue';
-    import Name from './subcomponents/Name.vue';
-    import gsap from 'gsap';
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { onMounted } from 'vue';
+  import Name from './subcomponents/Name.vue';
 
-    // gsap.registerPlugin(ScrollTrigger);
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import NameSVG from '@/components/subcomponents/NameSVG.vue'
 
-    ScrollTrigger.defaults({
-        markers: true,
-        pin: true,
-        scrub: true,
-        toggleActions: "play none none none",
-    });
+  ScrollTrigger.defaults({
+    scrub: true,
+    pin: true,
+    toggleActions: "play reverse play reverse",
+  });
 
-    const timeline = gsap.timeline({
-        defaults: {
-            duration: 1,
-            ease: "power2.out",
-        },
-    });
+  const timeline = gsap.timeline({
+    defaults: {
+        duration: 1,
+        ease: "power2.out",
+    },
+  });
 
-    onMounted(() => {
+  onMounted(() => {
     timeline.from(".name", {
-        x: -200,
-        opacity: 0,
+      x: -200,
+      opacity: 0,
     }).from(".role", {
-        x: -250,
-        opacity: 0,
+      x: -250,
+      opacity: 0,
     }, "<");
 
     gsap.from(".name-section", {
-        duration: 1,
-        scrollTrigger: {
-            trigger: ".name-section",
-            start: "center center",
-            end: "bottom top",
-            toggleActions: "play none none none",
-        }
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".name-section",
+        start: "center center",
+        end: "bottom top",
+      }
     });
 
-    //   gsap.from(".overlay-icon", {
-    //     scale: 2,
-    //     scrollTrigger: {
-    //         trigger: ".overlay-icon",
-    //         start: "top bottom",
-    //         end: "bottom top",
-    //         toggleActions: "play none none none",
-    //     },
-    //   })
-    });
+    timeline.from(".overlay", {
+      scale: 50,
+      scrollTrigger: {
+        trigger: ".overlay-2",
+        start: "center center",
+        end: "bottom top",
+      },
+    }).from(".overlay-2", {
+      scrollTrigger: {
+        trigger: ".overlay-2",
+        start: "center center",
+        end: "bottom top",
+      },
+    }, "<");
+  });
 
 </script>
 
 <template>
-    <div class="flex-element-start">
-            <section class="name-section">
-                <Name class="name" />
-                <h2 class="role">:Full-Stack Developer</h2>
-                <p class="random-text">//just a random text for animation</p>
-            </section>
-    </div>
-    <div class="overlay-icon-container">
-        <img src="@/assets/thipak.svg" class="overlay-icon"  alt="Thipak">
-    </div>
-    <div id="inProgress">
-       <p> Work in Progress !! </p>
-    </div>
+  <NameSVG class="name-overlay"></NameSVG>
+  <div class="flex-element-start">
+    <section class="name-section">
+        <Name class="name" />
+        <h2 class="role">:Full-Stack Developer</h2>
+        <p class="random-text">//just a random text for animation</p>
+    </section>
+  </div>
+  <div id="inProgress">
+     <p> Work in Progress !! </p>
+  </div>
 </template>
 
 <style scoped>
@@ -81,6 +82,7 @@
 
         user-select: none;
         -moz-user-select: none;
+        -webkit-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
 
@@ -105,10 +107,14 @@
         }
     }
 
-    .overlay-icon-container {
-        position: fixed;
-        top: 0;
-        left: 0;
+    Name {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: center;
+      width: 100%;
+      height: 200%;
+      z-index: 1;
     }
 
     #inProgress {
