@@ -1,18 +1,30 @@
 <script setup lang="ts">
-import {KinesisContainer, KinesisElement} from 'vue-kinesis';
+import Name from './subcomponents/Name.vue';
+import gsap from 'gsap';
+
+const timeline = gsap.timeline({
+    defaults: {
+        duration: 1,
+        ease: "power2.out",
+    },
+});
+
+timeline.from(".role", {
+    x: -150,
+    opacity: 0,
+}, "<").from(".random-text", {
+    x: -150,
+    opacity: 0,
+}, "<");
 
 </script>
 <template>
     <div class="flex-element-one">
-        <KinesisContainer class="kinesis-container">
-            <section>
-                <KinesisElement :strength="50"
-                                type="depth">
-                    <h1>THIPAK B</h1>
-                </KinesisElement>
-                <h2>:Full-Stack Developer</h2>
-            </section>
-        </KinesisContainer>
+        <section>
+            <Name />
+            <h2 class="role">:Full-Stack Developer</h2>
+            <p class="random-text">//just a random text for animation</p>
+        </section>
     </div>
     <div id="inProgress">
        <p> Work in Progress !! </p>
@@ -21,13 +33,16 @@ import {KinesisContainer, KinesisElement} from 'vue-kinesis';
 
 <style scoped>
 .flex-element-one {
+    width: 100%;
+    height: 100vh;
+    background-color: #ddd6d6;
+
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #ddd6d6;
 
     user-select: none;
     -moz-user-select: none;
