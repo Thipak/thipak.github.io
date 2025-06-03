@@ -18,54 +18,13 @@ const randomPosition = ref(null);
 </script>
 <template>
     <div class="name">
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
                 <h1 ref="random-position">T</h1>
-            </KinesisElement>
-        </KinesisContainer>
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
                 <h1 ref="random-position">H</h1>
-            </KinesisElement>
-        </KinesisContainer>
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
                 <h1 ref="random-position">I</h1>
-            </KinesisElement>
-        </KinesisContainer>
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
                 <h1 ref="random-position">P</h1>
-            </KinesisElement>
-        </KinesisContainer>
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
                 <h1 ref="random-position">A</h1>
-            </KinesisElement>
-        </KinesisContainer>
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
                 <h1 ref="random-position">K</h1>
-            </KinesisElement>
-        </KinesisContainer>
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
-                <h1>&nbsp;</h1>
-            </KinesisElement>
-        </KinesisContainer>
-        <KinesisContainer class="kc-name">
-            <KinesisElement :strength="25"
-                            type="rotate">
                 <h1 ref="random-position">B</h1>
-            </KinesisElement>
-        </KinesisContainer>
     </div>
 </template>
 
