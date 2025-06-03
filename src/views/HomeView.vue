@@ -1,25 +1,31 @@
 <script setup lang="ts">
-import HomeFlexOne from '@/components/HomeFlexOne.vue';
-import HomeFlexIntro from '@/components/HomeFlexIntro.vue';
-import HomeFlexExperience from '@/components/HomeFlexExperience.vue';
-import HomeFlexProject from '@/components/HomeFlexProject.vue';
-import HomeFlexContact from '@/components/HomeFlexContact.vue';
+  import HomeStart from '@/components/HomeStart.vue';
+
+  import { onMounted } from 'vue';
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import HomeFlexIntro from '@/components/HomeFlexIntro.vue'
+  import HomeFlexExperience from '@/components/HomeFlexExperience.vue'
+
+  ScrollTrigger.defaults({
+    markers: true,
+    pin: true,
+    scrub: true,
+    toggleActions: "play reverse play reverse",
+  });
+
 </script>
 
 <template>
-  <div class="home">
-    <HomeFlexOne />
-    <HomeFlexIntro />
-    <HomeFlexProject />
-    <HomeFlexExperience />
-    <HomeFlexContact />
-  </div>
+  <HomeStart />
+  <HomeFlexIntro />
+  <HomeFlexExperience />
 </template>
 
 <style scoped>
-.home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .name-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 </style>
