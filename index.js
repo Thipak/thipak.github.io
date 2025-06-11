@@ -7,28 +7,71 @@ ScrollTrigger.defaults({
   markers: false,
 });
 
-// Common animation helper
-function fadeInFrom(selector, options = {}) {
-  gsap.from(selector, {
-    y: options.y || 40,
-    opacity: 0,
-    duration: options.duration || 1,
-    delay: options.delay || 0,
-    ease: options.ease || 'power2.out',
-    stagger: options.stagger,
-    scale: options.scale,
-    scrollTrigger: options.scrollTrigger || (options.trigger ? {
-      trigger: options.trigger,
-      ...options.scrollTrigger
-    } : undefined),
-  });
-}
+// Hero section animations
+gsap.from('.hero_avatar', {
+  y: -60,
+  opacity: 0,
+  duration: 1.2,
+  ease: 'power2.out',
+});
+gsap.from('.hero_title', {
+  y: 40,
+  opacity: 0,
+  duration: 1,
+  delay: 0.3,
+  ease: 'power2.out',
+});
+gsap.from('.hero_intro', {
+  y: 30,
+  opacity: 0,
+  duration: 1,
+  delay: 0.6,
+  ease: 'power2.out',
+});
 
-fadeInFrom('.hero_avatar', { y: -60, duration: 1.2 });
-fadeInFrom('.hero_title', { delay: 0.3 });
-fadeInFrom('.hero_intro', { y: 30, delay: 0.6 });
+// Experience section animations
+gsap.from('.experience_content', {
+  scrollTrigger: {
+    trigger: '.experience',
+    start: 'top 80%',
+  },
+  y: 80,
+  opacity: 0,
+  duration: 1.2,
+  ease: 'power2.out',
+});
 
-fadeInFrom('.experience_content', { trigger: '.experience', y: 80, duration: 1.2 });
-fadeInFrom('.projects_content h2', { trigger: '.projects', y: 60 });
-fadeInFrom('.project_card', { trigger: '.projects_content', y: 40, stagger: 0.2, duration: 0.8 });
-fadeInFrom('.contact_content', { trigger: '.contact', scale: 0.8, duration: 1.2, ease: 'back.out(1.7)' });
+// Projects section animations
+gsap.from('.projects_content h2', {
+  scrollTrigger: {
+    trigger: '.projects',
+    start: 'top 80%',
+  },
+  y: 60,
+  opacity: 0,
+  duration: 1,
+  ease: 'power2.out',
+});
+gsap.from('.project_card', {
+  scrollTrigger: {
+    trigger: '.projects_content',
+    start: 'top 80%',
+  },
+  y: 40,
+  opacity: 0,
+  stagger: 0.2,
+  duration: 0.8,
+  ease: 'power2.out',
+});
+
+// Contact section animations
+gsap.from('.contact_content', {
+  scrollTrigger: {
+    trigger: '.contact',
+    start: 'top 80%',
+  },
+  scale: 0.8,
+  opacity: 0,
+  duration: 1.2,
+  ease: 'back.out(1.7)',
+});
