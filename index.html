@@ -28,17 +28,47 @@
     <section class="page projects">
         <div class="projects_content">
             <h2>Projects</h2>
-            <a href="https://github.com/Thipak/Food-Delivery-Optimisation" class="project_card" target="_blank" rel="noopener">FOODMATCH - Optimizing food delivery using NetworkX</a>
-            <a href="https://github.com/Thipak/3D-Tic-Tac-Toe" class="project_card" target="_blank" rel="noopener">3D TicTacToe - A 3D version with new rules using Java</a>
-            <a href="https://github.com/Thipak/2P-Jet" class="project_card" target="_blank" rel="noopener">2P JetShooter - Jetshooter game using Pygame</a>
+            <div class="project_card" data-title="FOODMATCH" data-desc="Optimizing food delivery using NetworkX" data-link="https://github.com/Thipak/Food-Delivery-Optimisation">FOODMATCH - Optimizing food delivery using NetworkX</div>
+            <div class="project_card" data-title="3D TicTacToe" data-desc="A 3D version with new rules using Java" data-link="https://github.com/Thipak/3D-Tic-Tac-Toe">3D TicTacToe - A 3D version with new rules using Java</div>
+            <div class="project_card" data-title="2P JetShooter" data-desc="Jetshooter game using Pygame" data-link="https://github.com/Thipak/2P-Jet">2P JetShooter - Jetshooter game using Pygame</div>
+        </div>
+        <div id="project-modal" class="modal" aria-modal="true" role="dialog" tabindex="-1">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close project details">&times;</button>
+                <h3 class="modal-title"></h3>
+                <p class="modal-desc"></p>
+                <a class="modal-link" href="#" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
         </div>
     </section>
     <section class="page contact">
         <div class="contact_content">
             <h2>Contact</h2>
-            <p>Email: thipak01balaji@gmail.com</p>
-            <p>LinkedIn: linkedin.com/in/thipak</p>
-            <p>GitHub: github.com/Thipak</p>
+            <p>
+                <a href="mailto:thipak01balaji@gmail.com" class="contact-link" aria-label="Email Thipak">
+                    <span class="contact-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </span>
+                    <span class="contact-text">thipak01balaji@gmail.com</span>
+                </a>
+            </p>
+            <p>
+                <a href="https://linkedin.com/in/thipak" class="contact-link" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+                    <span class="contact-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="7" y1="10" x2="7" y2="16"/><line x1="7" y1="7" x2="7" y2="7"/><line x1="11" y1="16" x2="11" y2="10"/><path d="M15 16v-3a2 2 0 0 1 4 0v3"/></svg>
+                    </span>
+                    <span class="contact-text">linkedin.com/in/thipak</span>
+                </a>
+            </p>
+            <p>
+                <a href="https://github.com/Thipak" class="contact-link" target="_blank" rel="noopener" aria-label="GitHub profile">
+                    <span class="contact-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.48 2.87 8.28 6.84 9.63.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+                    </span>
+                    <span class="contact-text">github.com/Thipak</span>
+                </a>
+            </p>
         </div>
     </section>
 </div>
@@ -50,6 +80,26 @@
   btn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  });
+
+  document.querySelectorAll('.project_card').forEach(card => {
+    card.addEventListener('click', () => {
+      const title = card.getAttribute('data-title');
+      const desc = card.getAttribute('data-desc');
+      const link = card.getAttribute('data-link');
+
+      document.querySelector('.modal-title').textContent = title;
+      document.querySelector('.modal-desc').textContent = desc;
+      const modalLink = document.querySelector('.modal-link');
+      modalLink.setAttribute('href', link);
+      modalLink.textContent = `View ${title} on GitHub`;
+
+      document.getElementById('project-modal').style.display = 'block';
+    });
+  });
+
+  document.querySelector('.modal-close').addEventListener('click', () => {
+    document.getElementById('project-modal').style.display = 'none';
   });
 </script>
 </body>
