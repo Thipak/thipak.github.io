@@ -1,0 +1,186 @@
+/* =====================
+   Base Styles
+   ===================== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(180deg, #b3e0ff 0%, #e6ffe6 100%);
+    color: #234d20;
+    scroll-behavior: smooth;
+}
+
+/* =====================
+   Layout
+   ===================== */
+.app {
+    width: 100vw;
+    overflow-x: hidden;
+}
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    /* Unified background for all pages */
+    background: transparent;
+}
+
+/* =====================
+   Hero Section
+   ===================== */
+.hero {
+    background: none !important;
+}
+.hero_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+}
+.hero_avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 4px 24px #0002;
+    background: #fff;
+    object-fit: cover;
+    border: 4px solid #7ed957;
+}
+.hero_title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #234d20;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px #fff8;
+}
+.hero_intro {
+    font-size: 1.3rem;
+    color: #388e3c;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+/* =====================
+   Experience Section
+   ===================== */
+.experience {
+    background: none !important;
+}
+.experience_content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px #0001;
+    padding: 2em 2.5em;
+    max-width: 600px;
+}
+.experience_content h2 {
+    color: #388e3c;
+    margin-bottom: 0.7em;
+}
+.experience_content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.experience_content li {
+    margin-bottom: 1em;
+    font-size: 1.1rem;
+    color: #234d20;
+    background: #e6ffe6;
+    border-radius: 10px;
+    padding: 0.8em 1em;
+    box-shadow: 0 1px 6px #0001;
+}
+
+/* =====================
+   Projects Section
+   ===================== */
+.projects {
+    background: none !important;
+}
+.projects_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+}
+.projects_content h2 {
+    color: #fbbf24;
+    margin-bottom: 1em;
+}
+.project_card {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    background: linear-gradient(90deg, #e6ffe6 60%, #b3e0ff 100%);
+    color: #234d20;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px #0002;
+    padding: 1.5em 2em;
+    margin: 0;
+    font-size: 1.13rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-left: 8px solid #7ed957;
+    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    cursor: pointer;
+    outline: none;
+}
+.project_card:hover, .project_card:focus {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px #7ed95755;
+    background: linear-gradient(90deg, #b3e0ff 60%, #e6ffe6 100%);
+    color: #388e3c;
+    border-left: 8px solid #fbbf24;
+    text-decoration: none;
+}
+
+/* =====================
+   Contact Section
+   ===================== */
+.contact {
+    background: none !important;
+}
+.contact_content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px #0001;
+    padding: 2em 2.5em;
+    max-width: 400px;
+    text-align: center;
+}
+.contact_content h2 {
+    color: #388e3c;
+    margin-bottom: 0.5em;
+}
+.contact_content p {
+    font-size: 1.1rem;
+    color: #234d20;
+    margin: 0.5em 0;
+}
+
+/* =====================
+   Responsive Styles
+   ===================== */
+@media (max-width: 600px) {
+    .hero_title { font-size: 2rem; }
+    .experience_content, .contact_content { padding: 1em; }
+    .project_card {
+        padding: 0.9em 0.8em;
+        font-size: 0.98rem;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        border-radius: 12px;
+        word-break: break-word;
+    }
+    .projects_content {
+        gap: 0.7em;
+        width: 100%;
+        padding: 0 0.5em;
+    }
+}

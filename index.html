@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <title>Thipak's Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="app">
+    <section class="page hero">
+        <div class="hero_content">
+            <img src="assets/thipak.svg" alt="Thipak Avatar" class="hero_avatar">
+            <h1 class="hero_title">Hi! I am Thipak</h1>
+            <p class="hero_intro">A Software Developer passionate about building delightful digital experiences.</p>
+        </div>
+    </section>
+    <section class="page experience">
+        <div class="experience_content">
+            <h2>Experience</h2>
+            <ul>
+                <li><strong>Software Development Engineer</strong> at Amadeus (2023–Present) – Working on Corporate Travel and Expense Management Platform using Java, SQL</li>
+                <li><strong>Software Development Engineer - Intern</strong> at Amadeus (2023) – Contributed to the development of SECO using Spring and Angular</li>
+                <li><strong>Research Intern</strong> at IIT-M (2022–2022) – Reconstruction of WDN using python and React</li>
+            </ul>
+        </div>
+    </section>
+    <section class="page projects">
+        <div class="projects_content">
+            <h2>Projects</h2>
+            <a href="https://github.com/Thipak/FOODMATCH" class="project_card" target="_blank" rel="noopener">FOODMATCH - Optimizing food delivery using NetworkX</a>
+            <a href="https://github.com/Thipak/3D-TicTacToe" class="project_card" target="_blank" rel="noopener">3D TicTacToe - A 3D version with new rules using Java</a>
+            <a href="https://github.com/Thipak/2P-JetShooter" class="project_card" target="_blank" rel="noopener">2P JetShooter - Jetshooter game using Pygame</a>
+        </div>
+    </section>
+    <section class="page contact">
+        <div class="contact_content">
+            <h2>Contact</h2>
+            <p>Email: thpak01balaji@gmail.com</p>
+            <p>LinkedIn: linkedin.com/in/thipak</p>
+            <p>GitHub: github.com/Thipak</p>
+        </div>
+    </section>
+</div>
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="index.js"></script>
+</body>
 </html>
