@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Flip);
 
 // Set default ScrollTrigger behaviors
 ScrollTrigger.defaults({
@@ -27,6 +27,56 @@ gsap.from('.hero_intro', {
   duration: 1,
   delay: 0.6,
   ease: 'power2.out',
+});
+
+// Animate hero_title with GSAP SplitText
+window.addEventListener('DOMContentLoaded', () => {
+  // ScrambleText for hero_title
+  if (window.gsap && window.ScrambleTextPlugin) {
+    const heroTitle = document.querySelector('.hero_title');
+    gsap.fromTo(heroTitle, {
+      scrambleText: {
+        text: '',
+        chars: 'upperAndLowerCase',
+        revealDelay: 0.2,
+        speed: 0.5
+      }
+    }, {
+      scrambleText: {
+        text: heroTitle.textContent,
+        chars: 'upperAndLowerCase',
+        revealDelay: 0.2,
+        speed: 0.5
+      },
+      duration: 2.8, // increased duration for longer effect
+      ease: 'power2.out',
+      delay: 0.1
+    });
+  }
+  // SplitText for hero_intro
+  if (window.SplitText) {
+    const heroIntro = document.querySelector('.hero_intro');
+    const split = new SplitText(heroIntro, { type: 'words' });
+    gsap.set(split.words, { opacity: 0, y: 40 });
+    gsap.to(split.words, {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      ease: 'power3.out',
+      stagger: 0.13,
+      delay: 0.5
+    });
+  }
+
+  // Remove any horizontal scroll ScrollTrigger for experience section
+  if (window.gsap && window.ScrollTrigger) {
+    const expSection = document.querySelector('.experience');
+    if (expSection) {
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.trigger === expSection) st.kill();
+      });
+    }
+  }
 });
 
 // Experience section animations
@@ -93,6 +143,11 @@ function openModal(title, desc, link) {
   modalLink.textContent = 'View on GitHub';
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
+  // Spin the close button the first time modal is opened
+  modalClose.classList.add('spin-once');
+  setTimeout(() => {
+    modalClose.classList.remove('spin-once');
+  }, 700); // match animation duration
   gsap.fromTo(modalContent, {scale: 0.85, opacity: 0}, {scale: 1, opacity: 1, duration: 0.45, ease: 'power3.out'});
   gsap.fromTo(backdrop, {opacity: 0}, {opacity: 1, duration: 0.3, ease: 'power2.out'});
   setTimeout(() => modalClose.focus(), 350);
